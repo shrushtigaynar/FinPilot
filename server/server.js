@@ -15,9 +15,14 @@ const connectDB = require('./config/db');
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: 'http://localhost:5173'
-}));
+app.use(
+  cors({
+    origin: [
+      'http://localhost:5173',
+      process.env.CLIENT_URL,
+    ].filter(Boolean),
+  })
+);
 
 app.use(express.json());
 

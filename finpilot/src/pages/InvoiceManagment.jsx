@@ -10,8 +10,9 @@ import {
   Trash2,
 } from 'lucide-react';
 import { PayPalButtons } from '@paypal/react-paypal-js';
+import API_BASE_URL from '../config/api';
 
-const API_URL = 'http://localhost:5000/api/invoices';
+const API_URL = `${API_BASE_URL}/api/invoices`;
 
 function InvoiceManagement() {
   const [invoiceList, setInvoiceList] = useState([]);
@@ -179,7 +180,7 @@ function InvoiceManagement() {
     }
 
     const response = await fetch(
-      'http://localhost:5000/api/paypal/create-order',
+      `${API_BASE_URL}/api/paypal/create-order`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -205,7 +206,7 @@ function InvoiceManagement() {
 
     try {
       const response = await fetch(
-        'http://localhost:5000/api/paypal/capture-order',
+        `${API_BASE_URL}/api/paypal/capture-order`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

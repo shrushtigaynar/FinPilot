@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 
 import {
   Chart as ChartJS,
@@ -33,7 +34,7 @@ function ProfitLossChart() {
     const fetchTransactions = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:5000/api/transactions'
+          `${API_BASE_URL}/api/transactions`
         );
 
         setTransactions(response.data.data || []);

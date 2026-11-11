@@ -23,6 +23,8 @@ const getPayPalAccessToken = async () => {
 const createPayPalOrder = async (amount, currency) => {
   const accessToken = await getPayPalAccessToken();
 
+  const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
+
   const response = await axios.post(
     `${process.env.PAYPAL_API_BASE}/v2/checkout/orders`,
     {
@@ -35,12 +37,10 @@ const createPayPalOrder = async (amount, currency) => {
           }
         }
       ],
-
       application_context: {
-  return_url: 'http://localhost:5173/payment-success',
-  cancel_url: 'http://localhost:5173/payment-cancel'
-}
-
+        return_url: `${clientUrl}/payment-success`,
+        cancel_url: `${clientUrl}/payment-cancel`
+      }
     },
     {
       headers: {

@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import API_BASE_URL from '../config/api';
+
 import RecentTransactions from '../components/RecentTransactions';
 import CashFlowChart from '../components/CashFlowChart';
 import ProfitLossChart from '../components/ProfitLossChart';
@@ -23,7 +25,7 @@ function Dashboard() {
     const fetchSummary = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:5000/api/transactions/summary'
+          `${API_BASE_URL}/api/transactions/summary`
         );
 
         setSummary(response.data.data || {});
@@ -56,7 +58,6 @@ function Dashboard() {
   return (
     <div className="space-y-8">
 
-      {/* Dashboard Heading */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">
@@ -77,7 +78,6 @@ function Dashboard() {
         </select>
       </div>
 
-      {/* Financial Summary Cards */}
       {loading ? (
         <div className="rounded-xl border border-slate-200 bg-white p-6 text-slate-500">
           Loading financial summary...
@@ -123,7 +123,6 @@ function Dashboard() {
         </>
       )}
 
-      {/* Charts */}
       <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
 
         <div className="min-h-72 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">

@@ -11,8 +11,9 @@ import {
   CalendarDays,
   RefreshCw,
 } from 'lucide-react';
+import API_BASE_URL from '../config/api';
 
-const API_URL = 'http://localhost:5000/api/transactions';
+const API_URL = `${API_BASE_URL}/api/transactions`;
 
 function PredictiveIntelligence() {
   const [transactions, setTransactions] = useState([]);

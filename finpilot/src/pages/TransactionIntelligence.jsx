@@ -10,6 +10,7 @@ import {
   RefreshCw,
   X,
 } from 'lucide-react';
+import API_BASE_URL from '../config/api';
 
 function TransactionIntelligence() {
   const [transactions, setTransactions] = useState([]);
@@ -26,7 +27,7 @@ function TransactionIntelligence() {
       setError('');
 
       const response = await axios.get(
-        'http://localhost:5000/api/transactions'
+        `${API_BASE_URL}/api/transactions`
       );
 
       const actualTransactions = response.data.data.map((item) => ({

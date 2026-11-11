@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 import { Bot, Send, Sparkles, User } from 'lucide-react';
 
 function AIAssistant() {
@@ -21,7 +22,7 @@ function AIAssistant() {
     const fetchTransactions = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:5000/api/transactions'
+          `${API_BASE_URL}/api/transactions`
         );
         setTransactions(response.data.data || []);
       } catch (error) {
@@ -195,7 +196,6 @@ function AIAssistant() {
     setMessage('');
     setLoading(true);
 
-    // Generate the response from locally fetched transaction data.
     const answer = getFinancialResponse(userQuestion);
 
     setMessages((prev) => [
@@ -208,7 +208,6 @@ function AIAssistant() {
 
   return (
     <div className="flex min-h-[75vh] flex-col rounded-2xl border border-slate-200 bg-white">
-
       <div className="flex items-center gap-3 border-b border-slate-200 p-6">
         <div className="rounded-xl bg-emerald-100 p-3 text-emerald-600">
           <Bot size={25} />
@@ -224,7 +223,6 @@ function AIAssistant() {
       </div>
 
       <div className="flex flex-1 flex-col gap-4 overflow-y-auto p-6">
-
         {messages.length === 0 ? (
           <div className="m-auto text-center">
             <Sparkles size={36} className="mx-auto mb-4 text-emerald-500" />
